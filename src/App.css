@@ -127,8 +127,15 @@
 .terminal-input-row {
   display: flex;
   align-items: baseline;
-  gap: 10px;
   min-height: 26px;
+}
+
+.terminal-command-row {
+  gap: 10px;
+}
+
+.terminal-input-row {
+  gap: 0;
 }
 
 .terminal-prompt {
@@ -165,7 +172,7 @@
 
 .terminal-input-row input {
   flex: 0 0 auto;
-  min-width: 1ch;
+  min-width: 0;
   padding: 0;
   border: 0;
   outline: 0;
@@ -177,7 +184,8 @@
 .terminal-caret {
   width: 9px;
   height: 18px;
-  margin-left: -6px;
+  transform: translateX(-4px);
+  transform: translateY(2px);
   background: #32d74b;
   box-shadow: 0 0 18px rgba(50, 215, 75, 0.75);
   animation: blink 1s steps(2, start) infinite;
@@ -281,11 +289,16 @@
     font-size: 13px;
   }
 
-  .terminal-command-row,
-  .terminal-input-row {
+  .terminal-command-row {
     align-items: flex-start;
     flex-direction: column;
     gap: 2px;
+  }
+
+  .terminal-input-row {
+    align-items: baseline;
+    flex-direction: row;
+    gap: 0;
   }
 }
 

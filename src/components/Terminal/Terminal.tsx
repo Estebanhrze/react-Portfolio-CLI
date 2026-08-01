@@ -70,13 +70,13 @@ export function Terminal() {
           }}
         >
           <label className="terminal-prompt" htmlFor="terminal-input">
-            {prompt}
+            {prompt}&nbsp;
           </label>
           <input
             ref={inputRef}
             id="terminal-input"
             value={input}
-            style={{ width: `${Math.max(input.length, 1)}ch` }}
+            style={{ width: `${input.length}ch` }}
             spellCheck={false}
             autoComplete="off"
             onChange={(event) => setInput(event.target.value)}
