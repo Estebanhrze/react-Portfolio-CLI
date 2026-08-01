@@ -1,4 +1,4 @@
-name: Deploy portfolio to GitHub Pages
+name: Build and deploy to gh-pages
 
 on:
   push:
@@ -7,16 +7,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: github-pages
+  group: gh-pages
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,21 +32,17 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publish dist to gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p ../portfolio-dist
+          cp -r dist/. ../portfolio-dist/
+          git checkout --orphan gh-pages
+          git rm -rf .
+          git clean -fdx
+          cp -r ../portfolio-dist/. .
+          touch .nojekyll
+          git add --all
+          git commit -m "Deploy portfolio"
+          git push --force origin gh-pages
