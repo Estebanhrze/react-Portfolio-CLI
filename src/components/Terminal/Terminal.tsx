@@ -1,14 +1,42 @@
-﻿import { useEffect, useRef } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
 import { useTerminal } from '../../hooks/useTerminal'
 
 export function Terminal() {
   const { entries, input, inputRef, prompt, setInput, execute, autocomplete, recall } = useTerminal()
   const outputRef = useRef<HTMLDivElement>(null)
+  const [dimensions, setDimensions] = useState({ columns: 100, rows: 32 })
 
   useEffect(() => {
     outputRef.current?.scrollTo({ top: outputRef.current.scrollHeight, behavior: 'smooth' })
   }, [entries])
 
+  useEffect(() => {
+    const output = outputRef.current
+    if (!output) return
+
+    const updateDimensions = () => {
+      const styles = window.getComputedStyle(output)
+      const fontSize = Number.parseFloat(styles.fontSize)
+      const canvas = document.createElement('canvas')
+      const context = canvas.getContext('2d')
+      const charWidth = context
+        ? ((context.font = `${styles.fontWeight} ${styles.fontSize} ${styles.fontFamily}`), context.measureText('0').width)
+        : fontSize * 0.6
+      const horizontalPadding = Number.parseFloat(styles.paddingLeft) + Number.parseFloat(styles.paddingRight)
+      const verticalPadding = Number.parseFloat(styles.paddingTop) + Number.parseFloat(styles.paddingBottom)
+      const lineHeight = Number.parseFloat(styles.lineHeight) || fontSize * 1.2
+      const columns = Math.max(1, Math.floor((output.clientWidth - horizontalPadding) / charWidth))
+      const rows = Math.max(1, Math.floor((output.clientHeight - verticalPadding) / lineHeight))
+
+      setDimensions((current) => (current.columns === columns && current.rows === rows ? current : { columns, rows }))
+    }
+
+    const observer = new ResizeObserver(updateDimensions)
+    observer.observe(output)
+    updateDimensions()
+
+    return () => observer.disconnect()
+  }, [])
   return (
     <section className="terminal-window" onClick={() => inputRef.current?.focus()}>
       <header className="terminal-header">
@@ -17,7 +45,7 @@ export function Terminal() {
           <span className="traffic-light yellow" />
           <span className="traffic-light green" />
         </div>
-        <div className="terminal-title">portfolio-cli - zsh - 100x32</div>
+        <div className="terminal-title">portfolio-cli - zsh - {dimensions.columns}x{dimensions.rows}</div>
         <div className="terminal-status">online</div>
       </header>
 

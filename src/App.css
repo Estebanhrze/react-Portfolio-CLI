@@ -219,10 +219,6 @@
   background: #32d74b;
 }
 
-.ninja-cursor.hidden {
-  opacity: 0;
-}
-
 @keyframes backgroundDrift {
   from {
     transform: scale(1.02) translate3d(-12px, -8px, 0) rotate(-0.4deg);
@@ -290,12 +286,6 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 2px;
-  }
-
-
-  .terminal-caret,
-  .ninja-cursor {
-    display: none;
   }
 }
 
