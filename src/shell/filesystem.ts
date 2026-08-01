@@ -6,7 +6,7 @@ export function formatPath(path: string[]) {
 
 export function formatPrompt(path: string[]) {
   const suffix = path.length ? `~/${path.join('/')}` : '~'
-  return `guest@portfolio:${suffix}$`
+  return `esteban@portfolio:${suffix}$`
 }
 
 export function getNode(root: VirtualNode, path: string[]) {

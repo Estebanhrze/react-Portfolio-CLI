@@ -34,7 +34,20 @@ export function useTerminal() {
   function execute(commandInput = input) {
     const parsed = parseCommand(commandInput)
     const visibleCommand = commandInput.trim()
-    if (!visibleCommand) return
+    if (!visibleCommand) {
+      setEntries((current) => [
+        ...current,
+        {
+          id: crypto.randomUUID(),
+          prompt,
+          command: '',
+          output: '',
+          kind: 'info',
+        },
+      ])
+      setHistoryIndex(null)
+      return
+    }
 
     const nextHistory = [...commandHistory, visibleCommand]
     const result = runCommand(parsed, path, nextHistory)

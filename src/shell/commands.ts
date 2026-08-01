@@ -113,7 +113,7 @@ export function runCommand(parsed: ParsedCommand, path: string[], history: strin
       return info(args.join(' '))
 
     case 'whoami':
-      return info('guest - explorando el portfolio CLI de Esteban')
+      return info('esteban - explorando el portfolio CLI de Esteban')
 
     case 'banner':
       return info(['██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗', '██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗', '██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║', '██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║', '██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝', '╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝'].join('\n'))
@@ -141,7 +141,7 @@ export function runCommand(parsed: ParsedCommand, path: string[], history: strin
     case 'neofetch':
       return info([
         '      /\\',
-        '     /  \\       guest@portfolio',
+        '     /  \\       esteban@portfolio',
         '    / /\\ \\      stack: React + TypeScript + Vite',
         '   / ____ \\     shell: virtual CLI',
         '  /_/    \\_\\    theme: glass terminal',
