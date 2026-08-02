@@ -3,6 +3,7 @@ import { formatPath, listCurrent, resolveChild, tree } from './filesystem'
 import type { CommandResult, ParsedCommand } from './types'
 
 const commands = [
+  'neofetch',
   'banner',
   'cat',
   'cd',
@@ -12,7 +13,6 @@ const commands = [
   'help',
   'history',
   'ls',
-  'neofetch',
   'open',
   'projects',
   'pwd',
@@ -116,8 +116,14 @@ export function runCommand(parsed: ParsedCommand, path: string[], history: strin
       return info('esteban - explorando el portfolio CLI de Esteban')
 
     case 'banner':
-      return info(['██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗', '██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗', '██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║', '██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║', '██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝', '╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝'].join('\n'))
-
+      return info([
+        '███████╗  ███████╗  ████████╗  ███████╗  ██████╗    █████╗   ███╗   ██╗',
+        '██╔════╝  ██╔════╝  ╚══██╔══╝  ██╔════╝  ██╔══██╗  ██╔══██╗  ████╗  ██║',
+        '█████╗    ███████╗     ██║     █████╗    ██████╔╝  ███████║  ██╔██╗ ██║',
+        '██╔══╝    ╚════██║     ██║     ██╔══╝    ██╔══██╗  ██╔══██║  ██║╚██╗██║',
+        '███████╗  ███████║     ██║     ███████╗  ██████╔╝  ██║  ██║  ██║ ╚████║',
+        '╚══════╝  ╚══════╝     ╚═╝     ╚══════╝  ╚═════╝   ╚═╝  ╚═╝  ╚═╝  ╚═══╝',
+      ].join('\n'))
     case 'version':
       return info('portfolio-cli v0.1.0')
 

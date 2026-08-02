@@ -116,7 +116,7 @@ export const fileSystem: VirtualNode = {
       type: 'directory',
       name: 'contact',
       children: {
-        'github.txt': { type: 'link', name: 'github.txt', target: 'https://github.com/', content: 'https://github.com/' },
+        'github.txt': { type: 'link', name: 'github.txt', target: 'https://github.com/Estebanhrze', content: 'https://github.com/Estebanhrze/' },
         'linkedin.txt': { type: 'link', name: 'linkedin.txt', target: 'https://www.linkedin.com/', content: 'https://www.linkedin.com/' },
         'email.txt': { type: 'file', name: 'email.txt', content: 'tu-email@example.com' },
       },
