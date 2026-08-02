@@ -117,8 +117,7 @@ export const fileSystem: VirtualNode = {
       name: 'contact',
       children: {
         'github.txt': { type: 'link', name: 'github.txt', target: 'https://github.com/Estebanhrze', content: 'https://github.com/Estebanhrze/' },
-        'linkedin.txt': { type: 'link', name: 'linkedin.txt', target: 'https://www.linkedin.com/', content: 'https://www.linkedin.com/' },
-        'email.txt': { type: 'file', name: 'email.txt', content: 'tu-email@example.com' },
+        'linkedin.txt': { type: 'link', name: 'linkedin.txt', target: 'https://www.linkedin.com/in/esteban-hernandez-333964420/', content: 'https://www.linkedin.com/in/esteban-hernandez-333964420/' },
       },
     },
     resume: {

@@ -50,14 +50,26 @@ function printableList(items: ReturnType<typeof listCurrent>) {
     .join('\n')
 }
 
+function clickableResources(path: string[], items: ReturnType<typeof listCurrent>) {
+  return items.flatMap((item) => {
+    if (item.type !== 'link' && item.type !== 'pdf') return []
+
+    const node = resolveChild(fileSystem, path, item.name)
+    const target = node?.target ?? node?.content
+    return target ? [{ name: item.name, type: item.type, target }] : []
+  })
+}
+
 export function runCommand(parsed: ParsedCommand, path: string[], history: string[]): CommandResult {
   const { command, args, raw } = parsed
 
   if (!raw) return info('')
 
   switch (command) {
-    case 'ls':
-      return ok(printableList(listCurrent(fileSystem, path)))
+    case 'ls': {
+      const items = listCurrent(fileSystem, path)
+      return ok(printableList(items), { resources: clickableResources(path, items) })
+    }
 
     case 'cd': {
       const target = args[0]
@@ -138,7 +150,7 @@ export function runCommand(parsed: ParsedCommand, path: string[], history: strin
       return info('github: https://github.com/\nlinkedin: https://www.linkedin.com/')
 
     case 'repo':
-      return ok('Opening repository...', { openTarget: 'https://github.com/' })
+      return ok('Opening repository...', { openTarget: 'https://github.com/Estebanhrze' })
 
     case 'resume':
       return ok('Opening CV...', { openTarget: '/pdfs/cv.pdf' })

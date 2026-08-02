@@ -14,9 +14,16 @@ export type ParsedCommand = {
   raw: string
 }
 
+export type TerminalResource = {
+  name: string
+  type: 'link' | 'pdf'
+  target: string
+}
+
 export type CommandResult = {
   output: string
   animation?: 'donut'
+  resources?: TerminalResource[]
   nextPath?: string[]
   clear?: boolean
   openTarget?: string
@@ -29,5 +36,6 @@ export type TerminalEntry = {
   command: string
   output?: string
   animation?: CommandResult['animation']
+  resources?: CommandResult['resources']
   kind?: CommandResult['kind']
 }

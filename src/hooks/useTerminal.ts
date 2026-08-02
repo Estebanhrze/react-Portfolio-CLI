@@ -67,6 +67,7 @@ export function useTerminal() {
           command: visibleCommand,
           output: result.output,
           animation: result.animation,
+          resources: result.resources,
           kind: result.kind,
         },
       ])

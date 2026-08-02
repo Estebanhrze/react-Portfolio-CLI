@@ -59,7 +59,29 @@ export function Terminal() {
                 <span className="terminal-command">{entry.command}</span>
               </div>
             ) : null}
-            {entry.output ? <pre className={`terminal-result ${entry.kind ?? 'info'}`}>{entry.output}</pre> : null}
+            {entry.output ? (
+              <pre className={`terminal-result ${entry.kind ?? 'info'}`}>
+                {entry.output.split('\n').map((line, index, lines) => {
+                  const resource = entry.resources?.find((item) => line === `${item.name}  [${item.type}]`)
+
+                  return (
+                    <span key={`${entry.id}-${index}`}>
+                      {resource ? (
+                        <>
+                          {resource.name}{'  '}
+                          <a className="terminal-resource-link" href={resource.target} target="_blank" rel="noreferrer">
+                            [{resource.type}]
+                          </a>
+                        </>
+                      ) : (
+                        line
+                      )}
+                      {index < lines.length - 1 ? '\n' : null}
+                    </span>
+                  )
+                })}
+              </pre>
+            ) : null}
             {entry.animation === 'donut' ? <AsciiDonut /> : null}
           </article>
         ))}
@@ -103,5 +125,4 @@ export function Terminal() {
     </section>
   )
 }
-
 
