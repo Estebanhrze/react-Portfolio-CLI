@@ -1,4 +1,4 @@
-﻿import { fileSystem } from '../data/filesystem'
+import { fileSystem } from '../data/filesystem'
 import { formatPath, listCurrent, resolveChild, tree } from './filesystem'
 import type { CommandResult, ParsedCommand } from './types'
 
@@ -139,15 +139,7 @@ export function runCommand(parsed: ParsedCommand, path: string[], history: strin
       return info(printableList(listCurrent(fileSystem, ['projects'])))
 
     case 'neofetch':
-      return info([
-        '      /\\',
-        '     /  \\       esteban@portfolio',
-        '    / /\\ \\      stack: React + TypeScript + Vite',
-        '   / ____ \\     shell: virtual CLI',
-        '  /_/    \\_\\    theme: glass terminal',
-        '',
-        'Run `help` to see commands.',
-      ].join('\n'))
+      return info('', { animation: 'donut' })
 
     default:
       return error(`Command not found: ${command}. Try help`)

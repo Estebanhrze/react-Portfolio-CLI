@@ -1,4 +1,4 @@
-﻿export type NodeKind = 'directory' | 'file' | 'pdf' | 'link'
+export type NodeKind = 'directory' | 'file' | 'pdf' | 'link'
 
 export type VirtualNode = {
   type: NodeKind
@@ -16,6 +16,7 @@ export type ParsedCommand = {
 
 export type CommandResult = {
   output: string
+  animation?: 'donut'
   nextPath?: string[]
   clear?: boolean
   openTarget?: string
@@ -27,5 +28,6 @@ export type TerminalEntry = {
   prompt: string
   command: string
   output?: string
+  animation?: CommandResult['animation']
   kind?: CommandResult['kind']
 }

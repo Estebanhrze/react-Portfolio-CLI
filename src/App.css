@@ -1,4 +1,4 @@
-﻿.app-shell {
+.app-shell {
   position: relative;
   min-height: 100svh;
   display: grid;
@@ -115,6 +115,7 @@
   overflow-y: auto;
   padding: 24px;
   text-align: left;
+  container-type: inline-size;
   scrollbar-color: rgba(50, 215, 75, 0.46) transparent;
   scrollbar-width: thin;
 }
@@ -168,6 +169,60 @@
 
 .terminal-result.success {
   color: #d7ffe6;
+}
+
+.neofetch-output {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 28px;
+  justify-content: center;
+  margin-top: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.neofetch-output::-webkit-scrollbar {
+  display: none;
+}
+
+.neofetch-donut,
+.neofetch-info {
+  margin: 0;
+  font: inherit;
+  white-space: pre;
+}
+
+.neofetch-donut {
+  transform: translateX(-5ch);
+  min-width: 80ch;
+  color: #32d74b;
+  font-size: 12px;
+  line-height: 1;
+  text-shadow: 0 0 12px rgba(50, 215, 75, 0.45);
+}
+
+.neofetch-info {
+  margin-left: -8ch;
+  color: #b7d8ff;
+  line-height: 1.55;
+}
+
+@container (max-width: 1000px) {
+  .neofetch-output {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: flex-start;
+  }
+
+  .neofetch-donut {
+    transform: none;
+  }
+
+  .neofetch-info {
+    margin-left: 0;
+  }
 }
 
 .terminal-input-row input {
@@ -300,6 +355,14 @@
     flex-direction: row;
     gap: 0;
   }
+
+  .neofetch-output {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .neofetch-info {
+    margin-left: 0;
+  }
 }
-
-

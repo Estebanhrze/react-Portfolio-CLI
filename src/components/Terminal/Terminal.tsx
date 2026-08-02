@@ -1,5 +1,6 @@
-﻿import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTerminal } from '../../hooks/useTerminal'
+import { AsciiDonut } from './AsciiDonut'
 
 export function Terminal() {
   const { entries, input, inputRef, prompt, setInput, execute, autocomplete, recall } = useTerminal()
@@ -59,6 +60,7 @@ export function Terminal() {
               </div>
             ) : null}
             {entry.output ? <pre className={`terminal-result ${entry.kind ?? 'info'}`}>{entry.output}</pre> : null}
+            {entry.animation === 'donut' ? <AsciiDonut /> : null}
           </article>
         ))}
 
@@ -101,6 +103,5 @@ export function Terminal() {
     </section>
   )
 }
-
 
 

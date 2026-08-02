@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { runCommand, getAutocompleteOptions } from '../shell/commands'
 import { formatPrompt } from '../shell/filesystem'
 import { parseCommand } from '../shell/parser'
@@ -66,6 +66,7 @@ export function useTerminal() {
           prompt,
           command: visibleCommand,
           output: result.output,
+          animation: result.animation,
           kind: result.kind,
         },
       ])
