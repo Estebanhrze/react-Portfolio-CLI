@@ -171,6 +171,7 @@ export function runCommand(parsed: ParsedCommand, path: string[], history: strin
   }
 }
 
-export function getAutocompleteOptions(path: string[]) {
-  return [...commands, ...listCurrent(fileSystem, path).map((item) => item.name)]
+export function getAutocompleteOptions(path: string[], includeCommands = true) {
+  const resources = listCurrent(fileSystem, path).map((item) => item.name)
+  return includeCommands ? [...commands, ...resources] : resources
 }

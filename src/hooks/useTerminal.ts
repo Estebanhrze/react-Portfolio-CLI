@@ -82,7 +82,7 @@ export function useTerminal() {
   function autocomplete() {
     const parts = input.split(/\s+/)
     const current = parts.at(-1) ?? ''
-    const options = getAutocompleteOptions(path)
+    const options = getAutocompleteOptions(path, parts.length === 1)
     const match = options.find((option) => option.startsWith(current))
 
     if (!match || match === current) return

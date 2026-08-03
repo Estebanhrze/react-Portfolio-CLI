@@ -16,6 +16,7 @@ const systemInfo = [
   '-----------------',
   'backend: Java, Spring Boot, Python, FastAPI',
   'frontend: React, Astro, TypeScript, Javascript',
+  'devops: Docker, Kubernetes',
   'database: PostgreSQL',
   'idioms: English + Spanish', 
   'shell: virtual CLI',
